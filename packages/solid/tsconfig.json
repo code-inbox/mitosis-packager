@@ -1,0 +1,19 @@
+{
+    "include": ["../../output/solid"],
+    "compilerOptions": {
+        "target": "es5",
+        "module": "esnext",
+        "jsx": "preserve",
+        "jsxImportSource": "solid-js",
+        "sourceMap": true,
+        "strict": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "declarationDir": "dist/types"
+    }
+}

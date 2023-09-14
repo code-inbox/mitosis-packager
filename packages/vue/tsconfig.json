@@ -1,0 +1,20 @@
+{
+    "include": ["../../output/vue"],
+    "compilerOptions": {
+        "target": "es5",
+        "module": "es2015",
+        // "jsx": "preserve",
+        // "jsxImportSource": "vue",
+        "sourceMap": true,
+        "strict": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "declarationDir": "dist/types",
+        "experimentalDecorators": true
+    }
+}

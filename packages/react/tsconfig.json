@@ -1,0 +1,18 @@
+{
+    "include": ["../../output/react"],
+    "compilerOptions": {
+        "target": "es5",
+        "module": "esnext",
+        "jsx": "react-jsx",
+        "sourceMap": true,
+        "strict": true,
+        "moduleResolution": "node",
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "declaration": true,
+        "emitDeclarationOnly": true,
+        "declarationDir": "dist/types"
+    }
+}
