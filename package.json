@@ -1,0 +1,40 @@
+{
+  "name": "@magicbell/buttons",
+  "version": "1.3.0",
+  "description": "MagicBell Buttons SDK",
+  "author": "MagicBell <bot@magicbell.io> (https://magicbell.com)",
+  "contributors": [
+    "Stephan Meijer <stephan.meijer@gmail.com>",
+    "Matthew Oxley <matt@magicbell.io>"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "source": "./src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/buttons.esm.js",
+  "typings": "dist/index.d.ts",
+  "sideEffects": false,
+  "files": [
+    "/dist",
+    "/src",
+    "LICENSE"
+  ],
+  "homepage": "https://magicbell.com",
+  "keywords": [
+    "magicbell",
+    "notifications",
+    "notification center",
+    "notification inbox",
+    "api",
+    "PWA"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:magicbell-io/buttons.git"
+  },
+  "bugs": {
+    "url": "https://github.com/magicbell-io/buttons/issues"
+  },
+  "scripts": {
+    "test": ""
+  }
+}
