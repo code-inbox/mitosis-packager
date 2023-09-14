@@ -37,7 +37,6 @@
   "scripts": {
     "mitosis": "mitosis build",
     "build": "yarn run mitosis && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript",
-    "start": "watch 'yarn run mitosis' ./src ./overrides"
   },
   "devDependencies": {
     "@babel/core": "^7.22.17",
