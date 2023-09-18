@@ -15,7 +15,7 @@ import vue from "rollup-plugin-vue"
 
 const bundle: RollupOptions[] = [
     {
-        input: "output/react/src/index.tsx",
+        input: "output/react/src/index.ts",
         plugins: [
             peerDepsExternal({
                 packageJsonPath: path.resolve(
@@ -37,7 +37,7 @@ const bundle: RollupOptions[] = [
         },
     },
     {
-        input: "output/svelte/src/index.svelte",
+        input: "output/svelte/src/index.ts",
         plugins: [
             peerDepsExternal({
                 packageJsonPath: path.resolve(
@@ -61,7 +61,7 @@ const bundle: RollupOptions[] = [
         },
     },
     {
-        input: "output/solid/src/index.tsx",
+        input: "output/solid/src/index.ts",
         plugins: [
             peerDepsExternal({
                 packageJsonPath: path.resolve(
@@ -91,7 +91,7 @@ const bundle: RollupOptions[] = [
         },
     },
     {
-        input: "output/vue/vue3/src/index.vue",
+        input: "output/vue/vue3/src/index.ts",
         plugins: [
             peerDepsExternal({
                 packageJsonPath: path.resolve(
