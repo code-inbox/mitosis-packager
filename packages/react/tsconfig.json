@@ -1,6 +1,7 @@
 {
     "include": ["../../output/react"],
     "compilerOptions": {
+        "baseUrl": ".",
         "target": "es5",
         "module": "esnext",
         "jsx": "react-jsx",

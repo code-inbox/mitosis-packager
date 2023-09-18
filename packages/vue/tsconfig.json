@@ -1,6 +1,7 @@
 {
-    "include": ["../../output/vue"],
+    "include": ["../../output/vue", "utils.ts"],
     "compilerOptions": {
+        "baseUrl": ".",
         "target": "es5",
         "module": "es2015",
         // "jsx": "preserve",

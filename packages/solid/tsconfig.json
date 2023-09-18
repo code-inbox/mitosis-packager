@@ -1,6 +1,7 @@
 {
     "include": ["../../output/solid"],
     "compilerOptions": {
+        "baseUrl": ".",
         "target": "es5",
         "module": "esnext",
         "jsx": "preserve",

@@ -1,6 +1,7 @@
 {
-    "include": ["../../output/svelte"],
+    "include": ["../../output/svelte", "utils.ts"],
     "compilerOptions": {
+        "baseUrl": ".",
         "target": "es5",
         "module": "esnext",
         "jsx": "react-jsx",

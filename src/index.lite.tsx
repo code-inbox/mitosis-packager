@@ -1,7 +1,5 @@
-import { useStore, onInit } from "@builder.io/mitosis"
-import add from "./utils"
-import Button from "./button.lite"
-import Button2 from "./button.lite"
+import { useStore } from "@builder.io/mitosis"
+import MyButton from "./button.lite" // note that in Vue, calling this "Button" would conflict with the built-in button element
 
 type Props = {
   message: string
@@ -9,20 +7,16 @@ type Props = {
 
 export default function MyBasicComponent(props: Props) {
   const state = useStore({
-    name: "Foo",
+    name: "",
   })
-
-  onInit(() => {
-    console.log("Hello world", add(2, 3))
-  })
-  
 
   return (
     <div>
-      {props.message || "Hello"} {state.name}! I can run in React, Vue, Solid or
-      Svelte!
-      <Button />
-      <Button2 />
+      <div>I can run in React, Vue, Solid or Svelte!</div>
+      <div>
+        {props.message} {state.name}
+      </div>
+      <MyButton onClick={() => (state.name = "open")} />
     </div>
   )
 }
