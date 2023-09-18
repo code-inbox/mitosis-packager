@@ -3,7 +3,6 @@ import cypress from "cypress"
   cypress
     .run({
       project: `./packages/${framework}`,
-      e2e: false,
       testingType: "component",
       quiet: true,
       reporter: "../../reporter.cjs",

@@ -7,7 +7,7 @@ function cleanup() {
     dispose?.()
 }
 
-export type Ui = () => JSX.Element
+export type Ui = (props: any) => JSX.Element
 interface Options {
     log?: boolean
 }

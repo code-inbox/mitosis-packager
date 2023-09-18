@@ -2,17 +2,17 @@
 import Button from "@/dist"
 
 declare global {
-    namespace Cypress {
-        interface Chainable {
-            mount: (component: unknown) => Chainable<unknown>;
-        }
+  namespace Cypress {
+    interface Chainable {
+      mount: (component: unknown) => Chainable<unknown>
     }
+  }
 }
 
 describe("Smoke tests", () => {
-    it("Mounts with a clickable button", () => {
-        cy.mount(Button)
-        cy.contains("Click Me").click()
-        cy.contains("open")
-    })
+  it("Mounts with a clickable button", () => {
+    cy.mount(Button)
+    cy.contains("Click Me").click()
+    cy.contains("open")
+  })
 })
