@@ -1,9 +1,12 @@
 {
-    "include": ["src", "packages", "types", "rollup.config.ts", "vite.config.ts"],
+    "include": ["src", "packages", "types", "rollup.config.ts", "vite.config.ts", "test.cy.ts"],
     "compilerOptions": {
         "jsx": "preserve",
         "jsxImportSource": "@builder.io/mitosis",
         "allowSyntheticDefaultImports": true,
-        "types": ["cypress"]
+        "types": ["cypress"],
+        "paths": {
+            "@/*": ["./packages/react", "./packages/svelte", "./packages/vue", "./packages/solid"]
+        }
     },
 }
