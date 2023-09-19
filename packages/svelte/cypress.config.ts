@@ -1,5 +1,5 @@
 import {defineConfig} from "cypress";
-import rootConfig from "../../cypressRootConfig"
+import rootConfig from "../../cypress/root-config"
 
 export default defineConfig({
     component: {
@@ -7,9 +7,6 @@ export default defineConfig({
             framework: "svelte",
             bundler: "vite",
         },
-        specPattern: "../../test.cy.ts",
-        indexHtmlFile: "../../index.html",
-        supportFile: "./mount.ts",
         ...rootConfig.component
     },
 });

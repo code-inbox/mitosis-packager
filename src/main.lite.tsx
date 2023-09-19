@@ -1,5 +1,5 @@
 import { useStore } from "@builder.io/mitosis"
-import MyButton from "./button.lite" // note that in Vue, calling this "Button" would conflict with the built-in button element
+import MyButton from "./components/button.lite" // note that in Vue, calling this "Button" would conflict with the built-in button element
 
 type Props = {
   message: string
