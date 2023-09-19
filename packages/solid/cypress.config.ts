@@ -7,9 +7,6 @@ export default defineConfig({
             framework: "@dream2023/cypress-ct-solid-js",
             bundler: "vite",
         },
-        specPattern: "../../test.cy.ts",
-        indexHtmlFile: "../../index.html",
-        supportFile: "./mount.ts",
         ...rootConfig.component
     },
 });

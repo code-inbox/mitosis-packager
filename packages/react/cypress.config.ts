@@ -7,9 +7,6 @@ export default defineConfig({
             framework: "react",
             bundler: "vite",
         },
-        specPattern: "../../test.cy.ts",
-        indexHtmlFile: "../../index.html",
-        supportFile: "./mount.ts",
         ...rootConfig.component
     },
 });

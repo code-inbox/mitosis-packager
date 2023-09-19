@@ -1,10 +1,9 @@
-import {RollupOptions} from "rollup"
+import {RollupOptions, Plugin} from "rollup"
 import path from "path"
 
 import {babel} from "@rollup/plugin-babel"
 import resolve from "@rollup/plugin-node-resolve"
-import commonjs from "@rollup/plugin-commonjs"
-import typescript from "@rollup/plugin-typescript"
+import typescript, {JsonCompilerOptions} from "@rollup/plugin-typescript"
 import {terser} from "rollup-plugin-terser"
 import postcss from "rollup-plugin-postcss"
 import esbuild from "rollup-plugin-esbuild"
@@ -13,65 +12,57 @@ import svelte from "rollup-plugin-svelte"
 import sveltePreprocess from "svelte-preprocess"
 import vue from "rollup-plugin-vue"
 
-const bundle: RollupOptions[] = [
-    {
-        input: "output/react/src/index.ts",
+function EntryPoint(
+    framework: string,
+    optionals: Array<Plugin<unknown>> = [],
+    compilerOptions: Partial<JsonCompilerOptions> = {},
+    inputPath: string = ""
+): RollupOptions {
+    return {
+        input: `output/${inputPath || framework}/src/index.ts`,
         plugins: [
             peerDepsExternal({
                 packageJsonPath: path.resolve(
                     process.cwd(),
-                    "packages/react/package.json"
+                    `packages/${framework}/package.json`
                 ),
-            }) as any,
+            }) as unknown as Plugin<unknown>,
             resolve(),
-            commonjs(),
-            typescript({tsconfig: "packages/react/tsconfig.json"}),
-            postcss(),
-            esbuild(),
+            typescript({
+                tsconfig: "tsconfig.bundle.json",
+                include: [`output/${framework}/**/*`],
+                compilerOptions: {
+                    declarationDir: `packages/${framework}/dist`,
+                    baseUrl: `packages/${framework}`,
+                    ...compilerOptions,
+                },
+            }),
+            ...optionals,
             terser(),
         ],
         output: {
-            dir: "packages/react/dist",
+            dir: `packages/${framework}/dist`,
             format: "esm",
             sourcemap: true,
         },
-    },
-    {
-        input: "output/svelte/src/index.ts",
-        plugins: [
-            peerDepsExternal({
-                packageJsonPath: path.resolve(
-                    process.cwd(),
-                    "packages/svelte/package.json"
-                ),
-            }) as any,
-            resolve(),
-            commonjs(),
-            typescript({tsconfig: "packages/svelte/tsconfig.json"}),
-            postcss(),
+    }
+}
+
+const bundle: RollupOptions[] = [
+    EntryPoint("react", [esbuild()], {jsx: "react"}),
+    EntryPoint(
+        "svelte",
+        [
             svelte({
                 preprocess: sveltePreprocess(),
             }),
-            terser(),
+            postcss(),
         ],
-        output: {
-            dir: "packages/svelte/dist",
-            format: "esm",
-            sourcemap: true,
-        },
-    },
-    {
-        input: "output/solid/src/index.ts",
-        plugins: [
-            peerDepsExternal({
-                packageJsonPath: path.resolve(
-                    process.cwd(),
-                    "packages/solid/package.json"
-                ),
-            }) as any,
-            resolve(),
-            commonjs(),
-            typescript({tsconfig: "packages/solid/tsconfig.json"}),
+        {jsx: "react-jsx"}
+    ),
+    EntryPoint(
+        "solid",
+        [
             babel({
                 extensions: [".js", ".ts", ".jsx", ".tsx"],
                 babelHelpers: "bundled",
@@ -81,36 +72,15 @@ const bundle: RollupOptions[] = [
                     ["@babel/preset-env"],
                 ],
             }),
-            postcss(),
-            terser(),
         ],
-        output: {
-            dir: "packages/solid/dist",
-            format: "esm",
-            sourcemap: true,
-        },
-    },
-    {
-        input: "output/vue/vue3/src/index.ts",
-        plugins: [
-            peerDepsExternal({
-                packageJsonPath: path.resolve(
-                    process.cwd(),
-                    "packages/vue/package.json"
-                ),
-            }) as any,
-            typescript({tsconfig: "packages/vue/tsconfig.json"}),
-            vue(),
-            esbuild(),
-            postcss(),
-            terser(),
-        ],
-        output: {
-            dir: "packages/vue/dist",
-            format: "esm",
-            sourcemap: true,
-        },
-    },
+        {jsx: "preserve"}
+    ),
+    EntryPoint(
+        "vue",
+        [vue({}), esbuild(), postcss()],
+        {},
+        "vue/vue3"
+    ),
 ]
 
 export default bundle
