@@ -13,8 +13,5 @@
     "solid-js": "^1.7.11",
     "solid-styled-components": "^0.28.5"
   },
-  "devDependencies": {
-    "@dream2023/cypress-ct-solid-js": "^1.0.0",
-    "vite-plugin-solid": "^2.7.0"
-  }
+  "devDependencies": {}
 }
