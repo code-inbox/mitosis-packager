@@ -38,7 +38,7 @@
     "bundle:svelte": "vite build --config packages/svelte/vite.bundle.mts",
     "bundle:solid": "vite build --config packages/solid/vite.bundle.mts",
     "bundle:all": "yarn run clean && yarn run bundle:vue & yarn run bundle:react & yarn run bundle:svelte & yarn run bundle:solid && yarn test",
-    "build": "yarn run mitosis && yarn run bundle",
+    "build": "yarn run mitosis && yarn run bundle:all",
     "test:react": "yarn cypress open --project ./packages/react --component",
     "test:svelte": "yarn cypress open --project ./packages/svelte --component",
     "test:vue": "yarn cypress open --project ./packages/vue --component",
