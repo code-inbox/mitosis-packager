@@ -15,7 +15,7 @@
         "forceConsistentCasingInFileNames": true,
         "declaration": true,
         "emitDeclarationOnly": true,
-        "declarationDir": "dist/types",
+        "declarationDir": "dist",
         "experimentalDecorators": true
     }
 }
