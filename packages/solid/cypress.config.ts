@@ -1,5 +1,5 @@
 import {defineConfig} from "cypress";
-import rootConfig from "../../cypress-root-config"
+import rootConfig from "../../cypress/root-config"
 
 export default defineConfig({
     component: {

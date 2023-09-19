@@ -11,7 +11,7 @@ export default defineConfig({
     server: {
         fs: {
             // Allow serving the test file from the project root
-            allow: ['../../test.cy.ts'],
+            allow: ['../../cypress/test.cy.ts'],
         },
     },
 })

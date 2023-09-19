@@ -43,7 +43,7 @@
     "test:svelte": "yarn cypress open --project ./packages/svelte --component",
     "test:vue": "yarn cypress open --project ./packages/vue --component",
     "test:solid": "yarn cypress open --project ./packages/solid --component",
-    "test": "node test-all.mjs"
+    "test": "node cypress/test-all.mjs"
   },
   "devDependencies": {
     "@builder.io/eslint-plugin-mitosis": "^0.0.14",

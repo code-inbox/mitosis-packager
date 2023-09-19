@@ -5,7 +5,7 @@ import cypress from "cypress"
       project: `./packages/${framework}`,
       testingType: "component",
       quiet: true,
-      reporter: "../../reporter.cjs",
+      reporter: "../../cypress/reporter.cjs",
     })
     .then((results) => {
       if (results.totalFailed) {

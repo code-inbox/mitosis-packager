@@ -1,5 +1,5 @@
 import solid from "vite-plugin-solid"
 
-import getViteConfig from "../../config-helpers"
+import getViteConfig from "../../build-utils/config-helpers"
 
 export default getViteConfig("solid", [solid()])

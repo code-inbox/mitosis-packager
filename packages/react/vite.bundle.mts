@@ -1,4 +1,4 @@
-import getViteConfig from "../../config-helpers"
+import getViteConfig from "../../build-utils/config-helpers"
 
 export default getViteConfig("react", [])
 

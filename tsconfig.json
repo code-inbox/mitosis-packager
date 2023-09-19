@@ -1,5 +1,5 @@
 {
-    "include": ["src", "packages", "config-helpers.ts", "vite.config.ts", "test.cy.ts"],
+    "include": ["src", "packages", "build-utils/config-helpers.ts", "cypress/vite.config.ts", "cypress/test.cy.ts"],
     "compilerOptions": {
         "baseUrl": ".",
         "jsx": "preserve",
