@@ -1,6 +1,7 @@
 {
     "include": ["../../output/solid"],
     "compilerOptions": {
+        "baseUrl": ".",
         "target": "es5",
         "module": "esnext",
         "jsx": "preserve",
@@ -14,6 +15,6 @@
         "forceConsistentCasingInFileNames": true,
         "declaration": true,
         "emitDeclarationOnly": true,
-        "declarationDir": "dist/types"
+        "declarationDir": "dist"
     }
 }

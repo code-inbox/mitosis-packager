@@ -1,6 +1,7 @@
 {
-    "include": ["../../output/svelte"],
+    "include": ["../../output/svelte", "utils.ts"],
     "compilerOptions": {
+        "baseUrl": ".",
         "target": "es5",
         "module": "esnext",
         "jsx": "react-jsx",
@@ -13,6 +14,6 @@
         "forceConsistentCasingInFileNames": true,
         "declaration": true,
         "emitDeclarationOnly": true,
-        "declarationDir": "dist/types"
+        "declarationDir": "dist"
     }
 }

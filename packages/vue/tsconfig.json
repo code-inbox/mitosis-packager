@@ -1,6 +1,7 @@
 {
-    "include": ["../../output/vue"],
+    "include": ["../../output/vue", "utils.ts"],
     "compilerOptions": {
+        "baseUrl": ".",
         "target": "es5",
         "module": "es2015",
         // "jsx": "preserve",
@@ -14,7 +15,7 @@
         "forceConsistentCasingInFileNames": true,
         "declaration": true,
         "emitDeclarationOnly": true,
-        "declarationDir": "dist/types",
+        "declarationDir": "dist",
         "experimentalDecorators": true
     }
 }

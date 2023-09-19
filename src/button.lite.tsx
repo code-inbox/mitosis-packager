@@ -1,5 +1,11 @@
-export default function Button() {
+export default function Button(props: { onClick: () => void }) {
   return (
-    <button>button</button>
+    <button
+      onClick={() => {
+        props.onClick()
+      }}
+    >
+      Click Me
+    </button>
   )
 }

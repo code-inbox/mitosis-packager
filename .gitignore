@@ -2,3 +2,5 @@ node_modules
 output
 dist
 yarn-error.log
+*.xml
+screenshots
