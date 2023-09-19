@@ -39,10 +39,10 @@
     "bundle:solid": "vite build --config packages/solid/vite.bundle.mts",
     "bundle:all": "yarn run clean && yarn run bundle:vue & yarn run bundle:react & yarn run bundle:svelte & yarn run bundle:solid && yarn test",
     "build": "yarn run mitosis && yarn run bundle",
-    "test:react": "yarn cypress run --project ./packages/react --component --browser chrome",
-    "test:svelte": "yarn cypress run --project ./packages/svelte --component --browser chrome",
-    "test:vue": "yarn cypress run --project ./packages/vue --component --browser chrome",
-    "test:solid": "yarn cypress run --project ./packages/solid --component --browser chrome",
+    "test:react": "yarn cypress open --project ./packages/react --component",
+    "test:svelte": "yarn cypress open --project ./packages/svelte --component",
+    "test:vue": "yarn cypress open --project ./packages/vue --component",
+    "test:solid": "yarn cypress open --project ./packages/solid --component",
     "test": "node test-all.mjs"
   },
   "devDependencies": {
@@ -76,6 +76,7 @@
     "tslib": "^2.6.2",
     "typescript": "^5.2.2",
     "vite": "^4.4.9",
+    "vite-plugin-css-injected-by-js": "^3.3.0",
     "vite-plugin-dts": "^3.5.3",
     "vite-plugin-solid": "^2.7.0",
     "vue": "^3.3.4"

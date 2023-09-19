@@ -4,6 +4,6 @@ import sveltePreprocess from "svelte-preprocess"
 import getViteConfig from "../../config-helpers"
 
 export default getViteConfig("svelte", [svelte({
-    preprocess: [sveltePreprocess({typescript: true})],
+    preprocess: [sveltePreprocess({typescript: true})]
 })])
 

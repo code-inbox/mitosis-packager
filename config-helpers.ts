@@ -1,5 +1,6 @@
 import {PluginOption, defineConfig} from "vite"
 import dts from "vite-plugin-dts"
+import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 import {Plugin} from "rollup"
 import path from "path"
@@ -11,6 +12,7 @@ export default function (framework: string, plugins: PluginOption[] = []) {
     return defineConfig({
         plugins: [
             ...plugins,
+            cssInjectedByJsPlugin(),
             dts({
                 tsconfigPath: "tsconfig.bundle.json",
                 copyDtsFiles: true,
