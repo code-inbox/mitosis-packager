@@ -1,5 +1,5 @@
 {
-    "include": ["src", "packages", "rollup.config.ts", "vite.config.ts", "test.cy.ts"],
+    "include": ["src", "packages", "config-helpers.ts", "vite.config.ts", "test.cy.ts"],
     "compilerOptions": {
         "baseUrl": ".",
         "jsx": "preserve",
