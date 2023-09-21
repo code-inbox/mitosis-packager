@@ -1,0 +1,22 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "peerDependencies": {
+    "solid-js": "^1.7.11",
+    "solid-styled-components": "^0.28.5"
+  },
+  "devDependencies": {
+    "@dream2023/cypress-ct-solid-js": "^1.0.0",
+    "solid-js": "^1.7.12",
+    "solid-styled-components": "^0.28.5",
+    "vite-plugin-solid": "^2.7.0"
+  }
+}

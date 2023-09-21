@@ -8,7 +8,7 @@ import path from "path"
 import peerDepsExternal from "rollup-plugin-peer-deps-external"
 
 export default function (framework: string, plugins: PluginOption[] = []) {
-    const entry = framework === "vue" ? "vue/vue3" : framework
+    const entry = framework === "vue3" ? "vue/vue3" : framework
     return defineConfig({
         plugins: [
             ...plugins,

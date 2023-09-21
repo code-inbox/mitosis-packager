@@ -7,7 +7,7 @@
         "allowSyntheticDefaultImports": true,
         "types": ["cypress"],
         "paths": {
-            "@/*": ["./packages/react", "./packages/svelte", "./packages/vue", "./packages/solid"]
-        },
+            "@/*": [""]
+        }
     }
 }

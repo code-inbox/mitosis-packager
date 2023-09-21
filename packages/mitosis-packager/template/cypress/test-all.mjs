@@ -1,5 +1,9 @@
 import cypress from "cypress"
-;["react", "svelte", "solid", "vue"].forEach((framework) => {
+import fs from "fs"
+
+fs.readdirSync(
+    "./packages",
+).forEach((framework) => {
   cypress
     .run({
       project: `./packages/${framework}`,
