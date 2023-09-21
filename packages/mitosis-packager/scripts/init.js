@@ -48,19 +48,9 @@ module.exports = async function (
   originalDirectory,
   frameworks
 ) {
-  console.log("Hello from init.js. I am local")
-  console.log("appPath: ", appPath)
-  console.log("appName: ", appName)
-  console.log("verbose: ", verbose)
-  console.log("originalDirectory: ", originalDirectory)
-  console.log("frameworks: ", frameworks)
-
   // first lets write the templates/src folder
   const appPackage = require(path.join(appPath, "package.json"))
   const useYarn = fs.existsSync(path.join(appPath, "yarn.lock"))
-
-  console.log("appPackage", appPackage)
-  console.log("useYarn", useYarn)
 
   if (!frameworks.length) {
     console.log("No frameworks selected")
@@ -69,21 +59,20 @@ module.exports = async function (
   const templatePath = path.join(__dirname, "..", "template")
   fs.copySync(templatePath, appPath)
 
+
+  // rename ignore to .gitignore
+  fs.renameSync(path.join(appPath, "ignore"), path.join(appPath, ".gitignore"))
+
+  fs.ensureDirSync(path.join(appPath, "packages"))
+
   frameworks = frameworks.filter((framework) => {
     const frameworkPath = path.join(__dirname, "..", "frameworks", framework)
     if (!fs.existsSync(frameworkPath)) {
       console.log(`Framework ${framework} does not exist`)
       return false
     }
-    // copy everything from frameworkPath to appPath/packages/framework (except node_modules)
-    fs.copySync(frameworkPath, path.join(appPath, "packages", framework), {
-      filter: (src, dest) => {
-        if (src.includes("node_modules")) {
-          return false
-        }
-        return true
-      },
-    })
+    // copy everything from frameworkPath to appPath/packages/framework
+    fs.copySync(frameworkPath, path.join(appPath, "packages", framework))
 
     return true
   })
@@ -294,5 +283,7 @@ module.exports = async function (
   console.log(chalk.cyan("  cd"), cdpath)
   console.log(`  ${chalk.cyan(`${displayedCommand} run build`)}`)
   console.log()
-  console.log("Happy hacking!")
+  console.log("And then run one of the framework-specific Cypress tests. e.g. ")
+  console.log(`  ${chalk.cyan(`${displayedCommand} run test:${frameworks[0]}`)}`)
+  console.log("Have fun!")
 }

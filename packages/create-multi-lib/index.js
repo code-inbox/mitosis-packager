@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * The following is a fork of a file from the create-react-app project.
  * https://github.com/facebook/create-react-app/blob/main/packages/create-react-app/createReactApp.js
@@ -134,8 +136,7 @@ function install(root, useYarn, dependencies, isOnline) {
 function isSafeToCreateProjectIn(root, name) {
   if (fs.existsSync(root)) {
     console.log(`The directory ${chalk.green(name)} already exists.`)
-    fs.removeSync(root) // TODO: remove
-    return true // TODO: set to false
+    return false
   }
   return true
 }
@@ -240,7 +241,7 @@ async function init() {
       )
       console.log(
         `      ${chalk.cyan(
-          "https://github.com/magicbell-io/create-multi-lib/issues/new"
+          "https://github.com/magicbell-io/mitosis-packager/issues/new"
         )}`
       )
       console.log()
@@ -357,8 +358,8 @@ async function run(
   template,
   useYarn
 ) {
-  const packageToInstall = "multi-lib-scripts" // hardcode this
-  const allDependencies = ["@builder.io/mitosis-cli", "@builder.io/mitosis", "vite", "cypress", "@cypress/mount-utils", "rimraf", "vite-plugin-dts", "vite-plugin-css-injected-by-js", "rollup-plugin-peer-deps-external",  "../multi-lib-scripts"]
+  const packageToInstall = "mitosis-packager"
+  const allDependencies = ["@builder.io/mitosis-cli", "@builder.io/mitosis", "vite", "cypress", "@cypress/mount-utils", "rimraf", "vite-plugin-dts", "vite-plugin-css-injected-by-js", "rollup-plugin-peer-deps-external", packageToInstall]
 
   const isOnline = checkIfOnline(useYarn)
 
@@ -366,7 +367,7 @@ async function run(
 
   await install(root, useYarn, allDependencies, isOnline)
 
-  // fetch the value of the 'constants.js' file that is now in node_modules/multi-lib-scripts
+  // fetch the value of the 'constants.js' file that is now in node_modules/mitosis-packager
   const availableFrameworks = fs.readdirSync(path.resolve(
     process.cwd(),
     "node_modules",
