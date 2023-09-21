@@ -12,7 +12,7 @@ export default function MyBasicComponent(props: Props) {
 
   return (
     <div>
-      <div>I can run in React, Vue, Solid or Svelte!</div>
+      <div>I can run in ...</div>
       <div>
         {props.message} {state.name}
       </div>

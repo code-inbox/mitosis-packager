@@ -1,5 +1,5 @@
 {
-  "name": "@magicbell/buttons-solid",
+  "name": "",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -10,8 +10,11 @@
   "author": "",
   "license": "ISC",
   "peerDependencies": {
-    "solid-js": "^1.7.11",
-    "solid-styled-components": "^0.28.5"
+    "vue": "^3.3.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.3.4",
+    "@vitejs/plugin-vue-jsx": "^3.0.2",
+    "vue": "^3.3.4"
+  }
 }
