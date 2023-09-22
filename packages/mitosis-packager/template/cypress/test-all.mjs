@@ -3,7 +3,7 @@ import fs from "fs"
 
 Promise.all(
   fs.readdirSync("./packages").map((framework) => {
-    cypress
+    return cypress
       .run({
         project: `./packages/${framework}`,
         testingType: "component",
