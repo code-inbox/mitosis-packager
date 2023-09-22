@@ -1,0 +1,19 @@
+name: CI
+on:
+  push:
+    branches: [ main ]
+jobs:
+  container-test-job:
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/base:18.16.0
+      env:
+        NODE_ENV: development
+      ports:
+        - 80
+      options: --cpus 1
+    steps:
+      - name: Check for dockerenv file
+        run: npx create-multi-lib my-lib
+      - name: Build
+        run: cd my-lib && npm run build
