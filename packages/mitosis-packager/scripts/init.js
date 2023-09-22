@@ -3,6 +3,7 @@ const fs = require("fs-extra")
 const chalk = require("chalk")
 const spawn = require("cross-spawn")
 const execSync = require("child_process").execSync
+const emoji = require("node-emoji")
 
 function tryGitInit() {
   try {
@@ -118,6 +119,8 @@ module.exports = async function (
     console.log("Initialized a git repository.")
   }
 
+  appPackage.license = "MIT"
+
   // now install dependencies
   console.log(
     `Installing framework-specific packages for ${frameworks
@@ -132,9 +135,9 @@ module.exports = async function (
 
   // run yarn or npm install in "appPath"
   await new Promise((r) => {
-    const command = useYarn ? "yarnpkg" : "npm"
+    const command = useYarn ? "yarn" : "npm"
     const args = useYarn ? [] : ["install"]
-    const proc = spawn(command, args, { stdio: "inherit", cwd: appPath })
+    const proc = spawn(command, args, { stdio: "ignore", cwd: appPath })
     proc.on("close", (code) => {
       if (code !== 0) {
         console.error(`\`${command} ${args.join(" ")}\` failed`)
@@ -248,7 +251,7 @@ module.exports = async function (
   const displayedCommand = useYarn ? "yarn" : "npm"
 
   console.log()
-  console.log(`Success! Created ${appName} at ${appPath}`)
+  console.log(`${emoji.get('tada')} Success! Created ${appName} at ${appPath}`)
   console.log("Inside that directory, you can run several commands:")
   console.log()
   console.log(chalk.cyan(`  ${displayedCommand} build`))
@@ -285,5 +288,17 @@ module.exports = async function (
   console.log()
   console.log("And then run one of the framework-specific Cypress tests. e.g. ")
   console.log(`  ${chalk.cyan(`${displayedCommand} run test:${frameworks[0]}`)}`)
-  console.log("Have fun!")
+  console.log()
+  console.log(`This is an open source project led by ${chalk.underline("https://www.magicbell.com")} and builds upon the fantastic work of the ${chalk.underline("https://www.builder.io/")} team.`)
+  console.log()
+    console.log(
+      `${emoji.get("star")} If you like this project, please consider starring it on GitHub: ${chalk.underline(
+        "https://github.com/magicbell-io/mitosis-packager"
+      )} ${emoji.get("star")}`
+    )
+    console.log()
+    console.log(`${emoji.get("hammer")} Or even better, consider contributing a bundler to support your favorite framework (available Mitosis compilation targets listed here ${chalk.underline("https://github.com/BuilderIO/mitosis/blob/main/docs/configuration.md")}).`)
+    console.log()
+    console.log("Have fun!")
+    console.log("")
 }
