@@ -6,3 +6,7 @@ It is essentially a bundling / packaging layer on top of Mitosis, and it allows 
 
 The resulting bundles also include type declaration files.
 
+```
+npx create-multi-lib multee
+```
+
