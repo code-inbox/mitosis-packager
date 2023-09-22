@@ -1,7 +1,7 @@
 name: CI
-on:
-  push:
-    branches: [ main ]
+
+on: push
+
 jobs:
   container-test-job:
     runs-on: ubuntu-latest
@@ -13,7 +13,11 @@ jobs:
         - 80
       options: --cpus 1
     steps:
-      - name: Check for dockerenv file
-        run: npx create-multi-lib my-lib
-      - name: Build
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Nested Dependencies
+        run: cd packages/create-multi-lib && npm ci
+      - name: Start script
+        run: node ./packages/create-multi-lib/index.js my-lib --force-install-all
+      - name: Run tests
         run: cd my-lib && npm run build

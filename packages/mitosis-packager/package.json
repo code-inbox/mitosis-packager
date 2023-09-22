@@ -1,6 +1,6 @@
 {
   "name": "mitosis-packager",
-  "version": "1.0.15",
+  "version": "1.0.18",
   "description": "Scripts for building libraries targeting multiple frameworks from a single codebase, using Mitosis",
   "main": "index.js",
   "scripts": {

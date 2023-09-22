@@ -133,12 +133,6 @@ module.exports = async function (
     JSON.stringify(appPackage, null, 2)
   )
 
-  const dependencies = ["@builder.io/mitosis-cli", "@builder.io/mitosis", "vite", "cypress", "@cypress/mount-utils", "rimraf", "vite-plugin-dts", "vite-plugin-css-injected-by-js", "rollup-plugin-peer-deps-external"]
-
-  console.log(
-    `Installing dev dependencies.  This might take a couple of minutes.`
-  )
-
   // run yarn or npm install in "appPath"
   await new Promise((r) => {
     const command = useYarn ? "yarn" : "npm"
@@ -150,22 +144,6 @@ module.exports = async function (
         r(false)
       } else {
         console.log("Finished installing framework-specific packages")
-        r(true)
-      }
-    })
-  })
-
-  // run yarn or npm install in "appPath"
-  await new Promise((r) => {
-    const command = useYarn ? "yarn" : "npm"
-    const args = useYarn ? ["add", ...dependencies] : ["install", "--save", ...dependencies]
-    const proc = spawn(command, args, { stdio: "ignore", cwd: appPath })
-    proc.on("close", (code) => {
-      if (code !== 0) {
-        console.error(`\`${command} ${args.join(" ")}\` failed`)
-        r(false)
-      } else {
-        console.log("Finished installing generic packages")
         r(true)
       }
     })

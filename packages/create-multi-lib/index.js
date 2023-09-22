@@ -233,6 +233,7 @@ async function init() {
     .action((name) => {
       projectName = name
     })
+    .option("--force-install-all")
     .on("--help", () => {
       console.log(`    Only ${chalk.green("<project-directory>")} is required.`)
       console.log()
@@ -247,6 +248,9 @@ async function init() {
       console.log()
     })
     .parse(process.argv)
+
+  const options = program.opts()
+  const forceInstallAll = options.forceInstallAll
 
   if (typeof projectName === "undefined") {
     console.error("Please specify the project directory:")
@@ -271,11 +275,12 @@ async function init() {
     program.verbose,
     program.scriptsVersion,
     program.template,
-    useYarn
+    useYarn,
+    forceInstallAll
   )
 }
 
-async function createTemplate(name, verbose, version, template, useYarn) {
+async function createTemplate(name, verbose, version, template, useYarn, forceInstallAll) {
   const unsupportedNodeVersion = !semver.satisfies(
     // Coerce strings with metadata (i.e. `15.0.0-nightly`).
     semver.coerce(process.version),
@@ -345,7 +350,8 @@ async function createTemplate(name, verbose, version, template, useYarn) {
     verbose,
     originalDirectory,
     template,
-    useYarn
+    useYarn,
+    forceInstallAll
   )
 }
 
@@ -356,10 +362,11 @@ async function run(
   verbose,
   originalDirectory,
   template,
-  useYarn
+  useYarn,
+  forceInstallAll
 ) {
   const packageToInstall = "mitosis-packager"
-  const allDependencies = [packageToInstall]
+  const allDependencies = ["@builder.io/mitosis-cli", "@builder.io/mitosis", "vite", "cypress", "@cypress/mount-utils", "rimraf", "vite-plugin-dts", "vite-plugin-css-injected-by-js", "rollup-plugin-peer-deps-external", packageToInstall]
 
   const isOnline = checkIfOnline(useYarn)
 
@@ -367,7 +374,6 @@ async function run(
 
   await install(root, useYarn, allDependencies, isOnline)
 
-  // fetch the value of the 'constants.js' file that is now in node_modules/mitosis-packager
   const availableFrameworks = fs.readdirSync(path.resolve(
     process.cwd(),
     "node_modules",
@@ -375,22 +381,29 @@ async function run(
     "frameworks"
   ))
 
-  const { frameworks } = await prompts([
-    {
-      type: "multiselect",
-      name: "frameworks",
-      message: "Choose the frameworks that your library will support",
-      min: 1,
-      choices: availableFrameworks.map((framework) => {
-        // title is just framework with uppercase first letter
-        const title = framework.charAt(0).toUpperCase() + framework.slice(1)
-        return {
-          title,
-          value: framework,
-        }
-      }),
-    },
-  ])
+  let frameworks = []
+
+  if (forceInstallAll) {
+    frameworks = availableFrameworks
+  } else {
+      const promptResult = await prompts([
+        {
+          type: "multiselect",
+          name: "frameworks",
+          message: "Choose the frameworks that your library will support",
+          min: 1,
+          choices: availableFrameworks.map((framework) => {
+            // title is just framework with uppercase first letter
+            const title = framework.charAt(0).toUpperCase() + framework.slice(1)
+            return {
+              title,
+              value: framework,
+            }
+          }),
+        },
+      ])
+      frameworks = promptResult.frameworks
+  }
 
   await executeNodeScript(
     {
