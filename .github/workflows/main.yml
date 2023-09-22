@@ -3,10 +3,10 @@ name: CI
 on: push
 
 jobs:
-  container-test-job:
+  run-cypress-tests:
     runs-on: ubuntu-latest
     container:
-      image: cypress/base:18.16.0
+      image: cypress/base:20.5.0
       env:
         NODE_ENV: development
       ports:
