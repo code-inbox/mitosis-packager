@@ -220,7 +220,7 @@ module.exports = async function (
     .join(" & ")}`
   appPackage.scripts["build"] = `${useYarn ? "yarn" : "npm"} run mitosis && ${
     useYarn ? "yarn" : "npm"
-  } run bundle:all && ${useYarn ? "yarn" : "npm"} run test`
+  } run bundle:all`
 
   fs.writeFileSync(
     path.join(appPath, "package.json"),

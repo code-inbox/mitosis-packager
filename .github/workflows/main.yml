@@ -21,5 +21,7 @@ jobs:
         run: cd packages/mitosis-packager && npm ci 
       - name: Start script
         run: node ./packages/create-multi-lib/index.js my-lib --force-install-all
-      - name: Run tests
+      - name: Build
         run: cd my-lib && npm run build
+      - name: Run Cypress tests
+        run: cd my-lib && npm test
