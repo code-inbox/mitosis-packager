@@ -6,18 +6,17 @@ jobs:
   run-cypress-tests:
     runs-on: ubuntu-latest
     container:
-      image: cypress/base:20.5.0
-      env:
-        NODE_ENV: development
-      ports:
-        - 80
-      options: --cpus 1
+      image: cypress/base:20.6.1
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install Nested Dependencies
+      - name: Install Nested Dependencies 1
         run: cd packages/create-multi-lib && npm ci
+      - name: Install Nested Dependencies 2
+        run: cd packages/mitosis-packager && npm ci 
       - name: Start script
         run: node ./packages/create-multi-lib/index.js my-lib --force-install-all
-      - name: Run tests
+      - name: Build
         run: cd my-lib && npm run build
+      - name: Run Cypress tests
+        run: cd my-lib && npm test

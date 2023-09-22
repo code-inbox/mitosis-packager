@@ -366,7 +366,7 @@ async function run(
   forceInstallAll
 ) {
   const packageToInstall = "mitosis-packager"
-  const allDependencies = ["@builder.io/mitosis-cli", "@builder.io/mitosis", "vite", "cypress", "@cypress/mount-utils", "rimraf", "vite-plugin-dts", "vite-plugin-css-injected-by-js", "rollup-plugin-peer-deps-external", packageToInstall]
+  const allDependencies = ["@builder.io/mitosis-cli", "@builder.io/mitosis", "vite", "cypress", "@cypress/mount-utils", "rimraf", "vite-plugin-dts", "vite-plugin-css-injected-by-js", "rollup-plugin-peer-deps-external", forceInstallAll ? "../packages/mitosis-packager" : packageToInstall]
 
   const isOnline = checkIfOnline(useYarn)
 
