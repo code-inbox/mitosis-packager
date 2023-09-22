@@ -1,0 +1,23 @@
+name: CI
+
+on: push
+
+jobs:
+  run-cypress-tests:
+    runs-on: ubuntu-latest
+    container:
+      image: cypress/base:20.5.0
+      env:
+        NODE_ENV: development
+      ports:
+        - 80
+      options: --cpus 1
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install Nested Dependencies
+        run: cd packages/create-multi-lib && npm ci
+      - name: Start script
+        run: node ./packages/create-multi-lib/index.js my-lib --force-install-all
+      - name: Run tests
+        run: cd my-lib && npm run build
