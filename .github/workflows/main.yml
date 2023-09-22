@@ -15,8 +15,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Install Nested Dependencies
+      - name: Install Nested Dependencies 1
         run: cd packages/create-multi-lib && npm ci
+      - name: Install Nested Dependencies 2
+        run: cd packages/mitosis-packager && npm ci 
       - name: Start script
         run: node ./packages/create-multi-lib/index.js my-lib --force-install-all
       - name: Run tests
