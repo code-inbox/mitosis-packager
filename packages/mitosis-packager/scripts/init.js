@@ -299,6 +299,6 @@ module.exports = async function (
     console.log()
     console.log(`${emoji.get("hammer")} Or even better, consider contributing a bundler to support your favorite framework (available Mitosis compilation targets listed here ${chalk.underline("https://github.com/BuilderIO/mitosis/blob/main/docs/configuration.md")}).`)
     console.log()
-    console.log("Have fun!")
+    console.log("Have fun!!!")
     console.log("")
 }
