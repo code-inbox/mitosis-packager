@@ -1,3 +1,8 @@
+/**
+ * The following is a fork of a file from the create-react-app project.
+ * https://github.com/facebook/create-react-app/blob/main/packages/react-scripts/scripts/init.js
+ */
+
 const path = require("path")
 const fs = require("fs-extra")
 const chalk = require("chalk")
@@ -25,19 +30,11 @@ function tryGitCommit(appPath) {
     })
     return true
   } catch (e) {
-    // We couldn't commit in already initialized git repo,
-    // maybe the commit author config is not set.
-    // In the future, we might supply our own committer
-    // like Ember CLI does, but for now, let's just
-    // remove the Git files to avoid a half-done state.
     console.warn("Git commit not created", e)
     console.warn("Removing .git directory...")
     try {
-      // unlinkSync() doesn't work on directories.
       fs.removeSync(path.join(appPath, ".git"))
-    } catch (removeErr) {
-      // Ignore.
-    }
+    } catch (removeErr) {}
     return false
   }
 }
@@ -59,7 +56,6 @@ module.exports = async function (
   }
   const templatePath = path.join(__dirname, "..", "template")
   fs.copySync(templatePath, appPath)
-
 
   // rename ignore to .gitignore
   fs.renameSync(path.join(appPath, "ignore"), path.join(appPath, ".gitignore"))
@@ -237,9 +233,6 @@ module.exports = async function (
     console.log("Created git commit.")
   }
 
-  // Display the most elegant way to cd.
-  // This needs to handle an undefined originalDirectory for
-  // backward compatibility with old global-cli's.
   let cdpath
   if (originalDirectory && path.join(originalDirectory, appName) === appPath) {
     cdpath = appName
@@ -247,11 +240,10 @@ module.exports = async function (
     cdpath = appPath
   }
 
-  // Change displayed command to yarn instead of yarnpkg
   const displayedCommand = useYarn ? "yarn" : "npm"
 
   console.log()
-  console.log(`${emoji.get('tada')} Success! Created ${appName} at ${appPath}`)
+  console.log(`${emoji.get("tada")} Success! Created ${appName} at ${appPath}`)
   console.log("Inside that directory, you can run several commands:")
   console.log()
   console.log(chalk.cyan(`  ${displayedCommand} build`))
@@ -287,18 +279,34 @@ module.exports = async function (
   console.log(`  ${chalk.cyan(`${displayedCommand} run build`)}`)
   console.log()
   console.log("And then run one of the framework-specific Cypress tests. e.g. ")
-  console.log(`  ${chalk.cyan(`${displayedCommand} run test:${frameworks[0]}`)}`)
+  console.log(
+    `  ${chalk.cyan(`${displayedCommand} run test:${frameworks[0]}`)}`
+  )
   console.log()
-  console.log(`This is an open source project led by ${chalk.underline("https://www.magicbell.com")} and builds upon the fantastic work of the ${chalk.underline("https://www.builder.io/")} team.`)
+  console.log(
+    `This is an open source project led by ${chalk.underline(
+      "https://www.magicbell.com"
+    )} and builds upon the fantastic work of the ${chalk.underline(
+      "https://www.builder.io/"
+    )} team.`
+  )
   console.log()
-    console.log(
-      `${emoji.get("star")} If you like this project, please consider starring it on GitHub: ${chalk.underline(
-        "https://github.com/magicbell-io/mitosis-packager"
-      )} ${emoji.get("star")}`
-    )
-    console.log()
-    console.log(`${emoji.get("hammer")} Or even better, consider contributing a bundler to support your favorite framework (available Mitosis compilation targets listed here ${chalk.underline("https://github.com/BuilderIO/mitosis/blob/main/docs/configuration.md")}).`)
-    console.log()
-    console.log("Have fun!!!")
-    console.log("")
+  console.log(
+    `${emoji.get(
+      "star"
+    )} If you like this project, please consider starring it on GitHub: ${chalk.underline(
+      "https://github.com/magicbell-io/mitosis-packager"
+    )} ${emoji.get("star")}`
+  )
+  console.log()
+  console.log(
+    `${emoji.get(
+      "hammer"
+    )} Or even better, consider contributing a bundler to support your favorite framework (available Mitosis compilation targets listed here ${chalk.underline(
+      "https://github.com/BuilderIO/mitosis/blob/main/docs/configuration.md"
+    )}).`
+  )
+  console.log()
+  console.log("Have fun!!!")
+  console.log("")
 }
