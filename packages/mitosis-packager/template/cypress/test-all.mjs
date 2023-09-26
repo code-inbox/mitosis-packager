@@ -9,7 +9,7 @@ Promise.all(
         testingType: "component",
         quiet: true,
         reporter: "../../cypress/reporter.cjs",
-        browser: "chrome"
+        browser: "electron"
       })
       .then((results) => {
         if (results.totalFailed) {
