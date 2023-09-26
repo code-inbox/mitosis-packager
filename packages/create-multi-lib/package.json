@@ -1,6 +1,6 @@
 {
   "name": "create-multi-lib",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Create UI libraries for multiple frameworks from a single codebase.",
   "main": "index.js",
   "scripts": {

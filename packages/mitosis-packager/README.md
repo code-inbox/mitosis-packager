@@ -31,3 +31,7 @@ Mitosis supports a wide range of frameworks, and so far we only support four: `s
 - `mitosis-packager/frameworks/<framework>/vite.bundle.mts` - This is where you configure your Vite bundler. You can add plugins, configure the output directory, etc. This is also where you configure the framework-specific Vite plugins (e.g. `vite-plugin-solid-js`).
 
 The same smoke tests (i.e. those found in `mitosis-packager/template/cypress/test.cy.ts`) will run for all frameworks, so if all tests pass, you can be confident that your newly-added framework is successfully supported.
+
+## Inspiration
+
+Some of the scripts in this project were forked from the `create-react-app` project, and modified to suit our needs.
