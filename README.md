@@ -1,5 +1,7 @@
 # Mitosis Packager
 
+![mitosis-logo](https://github.com/code-inbox/mitosis-packager/assets/11192814/3cce06d1-7b04-43ac-8ddb-562c695de7ae)
+
 This is a boilerplate project for turning [Mitosis](https://github.com/BuilderIO/mitosis/tree/main/docs) output into publishable UI packages.
 
 It is essentially a bundling / packaging layer on top of Mitosis, and it allows you to write your UI component just once, and have it generate multiple packages targeted at different UI frameworks (currently supporting React, Svelte, Solid, Vue3).
